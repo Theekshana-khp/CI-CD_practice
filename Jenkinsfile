@@ -19,7 +19,8 @@ pipeline {
                     ls -la
                 '''
             }
-            stage('test'){
+        }
+        stage('test'){
                 steps{
                     sh'''
                         test -f build/index.html
@@ -27,7 +28,5 @@ pipeline {
                     '''
                 }
             }
-
-        }
     }
 }
