@@ -47,7 +47,7 @@ pipeline {
                 sh '''
                     npx serve -s build &
                     npx wait-on http://localhost:3000
-                    npx playwright test
+                    npx playwright test --reporter=line
                 '''
             }
         }
