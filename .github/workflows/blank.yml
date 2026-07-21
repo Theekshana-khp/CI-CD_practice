@@ -5,6 +5,6 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: first
-        run: echo"hello"
+        run: echo "hello"
       - name: first
-        run: echo"hello"  
+        run: echo "hello"  
