@@ -56,7 +56,13 @@ jobs:
       - name: Publish JS filename
         id: publish
         run: |
-          file=$(find dist/assets/*.js -type f)
+          file=$(find . -name "*.js" -not -path "./node_modules/*" | head -n 1)
+
+          if [ -z "$file" ]; then
+            echo "No JavaScript file found"
+            exit 1
+          fi
+
           echo "script_file=$file" >> "$GITHUB_OUTPUT"
 
       - name: Upload artifacts
