@@ -1,7 +1,7 @@
 name: Test Project
 
 on:
-  pull_request: :
+  pull_request:
     types:
       - opened
     branches:
@@ -51,12 +51,13 @@ jobs:
         run: npm run build
 
       - name: Upload artifacts
-        uses: actions/upload-at
+        uses: actions/upload-artifact@v4
+
         with:
           name: dist-files
           path: |
             dist
-            package-json
+            package.json
 
   deploy:
     needs: build
