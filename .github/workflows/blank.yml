@@ -47,6 +47,12 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
 
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install dependencies
         run: npm ci
 
@@ -80,7 +86,14 @@ jobs:
 
     steps:
       - name: Get JS filename
-        run: 'echo "JS File: ${{ needs.build.outputs.script_file }}"'
+        run: |
+          echo "JS File: ${{ needs.build.outputs.script_file }}"
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
